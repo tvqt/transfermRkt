@@ -5,11 +5,12 @@ library(snakecase)
 library(lubridate)
 library(rvest)
 library(httr)
+library(glue)
 
 transfm_player <- function(n) {
   # set user string
   ua <- "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
-  
+  URL <- "https://www.transfermarkt.com/a/profil/spieler/{n}"
   #get HTML
   h <- GET(URLencode(glue(URL)),user_agent(ua)) %>% read_html
   if (h %>% html_element(".info-content") %>% length() >1) {
